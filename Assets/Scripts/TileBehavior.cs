@@ -9,12 +9,17 @@ public class TileBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(SelfDestruct());
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * Time.deltaTime * tileSpeed);
+        transform.Translate(Vector3.back * Time.deltaTime * tileSpeed);
+    }
+    
+    IEnumerator SelfDestruct(){
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }

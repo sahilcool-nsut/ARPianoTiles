@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void OnSurfaceFound(){
         // if(!gameStart){
-            Debug.Log("Surface Found");
+            // Debug.Log("Surface Found");
             surfaceFound = true;
             surfaceMenu.gameObject.SetActive(false);
             startMenu.gameObject.SetActive(true);
@@ -43,12 +43,15 @@ public class GameManager : MonoBehaviour
     IEnumerator spawnTiles(){
         int i = 0;
         while(true){
-            GameObject tileSpawnLocationObject = tileSpawner.transform.GetChild((i%4)).gameObject;
-            Vector3 spawnLocation = tileSpawnLocationObject.transform.localPosition;
-            Instantiate(tile, new Vector3(spawnLocation.x,spawnLocation.y,spawnLocation.y), Quaternion.identity,tileSpawnLocationObject.transform);
+            int randomIndex = Random.Range(0,2);
+            GameObject tileSpawnLocationObject = tileSpawner.transform.GetChild(randomIndex).gameObject;
+            Vector3 spawnLocation = tileSpawnLocationObject.transform.position;
+            // Vector3 spawnLocation = new Vector3(0f,0f,2.0f);
+            Debug.Log(spawnLocation);
+            Instantiate(tile, new Vector3(spawnLocation.x,spawnLocation.y,spawnLocation.z), Quaternion.identity,tileSpawnLocationObject.transform);
             i++;
             yield return new WaitForSeconds(1);   
-            if(i==10){
+            if(i==20){
                 break;
             }
         }
