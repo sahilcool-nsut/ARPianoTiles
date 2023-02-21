@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawnable
   - Tile
+  - GameLoseLine
   layers:
   - Default
   - TransparentFX
